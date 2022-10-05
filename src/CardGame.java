@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardGame {
-    private ArrayList<Card> deckOfCards = new ArrayList<>();
-    private String name;
+    protected ArrayList<Card> deckOfCards = new ArrayList<>();
+
+    protected String name;
 
     public CardGame(String name) {
+        this.name = name;
         this.deckOfCards.add(new Card("U+2660", "2", 2));
         this.deckOfCards.add(new Card("U+2660", "3", 3));
         this.deckOfCards.add(new Card("U+2660", "4", 4));
@@ -60,7 +62,6 @@ public class CardGame {
         this.deckOfCards.add(new Card("U+2666", "Q", 12));
         this.deckOfCards.add(new Card("U+2666", "K", 13));
         this.deckOfCards.add(new Card("U+2666", "A", 14));
-        this.name = name;
     }
 
     public void getDeckOfCards() {
@@ -72,6 +73,7 @@ public class CardGame {
     public String getName() {
         return name;
     }
+
     public Card dealCard() {
         return deckOfCards.get(deckOfCards.size() - 1);
     }
@@ -81,5 +83,36 @@ public class CardGame {
         return deckOfCards;
     }
 
-    public Array
+    public ArrayList<Card> sortDeckIntoSuits() {
+        ArrayList<Card> hearts = new ArrayList<Card>();
+        ArrayList<Card> diamonds = new ArrayList<Card>();
+        ArrayList<Card> spades = new ArrayList<Card>();
+        ArrayList<Card> clubs = new ArrayList<Card>();
+
+        sortDeckInNumberOrder();
+
+        for (int i = 0; i < deckOfCards.size(); i++) {
+            if(deckOfCards.get(i).getSuit().equals("U+2665")) {
+                hearts.add(deckOfCards.get(i));
+            } else if(deckOfCards.get(i).getSuit().equals("U+2666")) {
+                diamonds.add(deckOfCards.get(i));
+            } else if(deckOfCards.get(i).getSuit().equals("U+2660")) {
+                spades.add(deckOfCards.get(i));
+            } else {
+                clubs.add(deckOfCards.get(i));
+            }
+        }
+
+        deckOfCards.clear();
+        deckOfCards.addAll(hearts);
+        deckOfCards.addAll(diamonds);
+        deckOfCards.addAll(spades);
+        deckOfCards.addAll(clubs);
+        return deckOfCards;
+    }
+
+    ArrayList<Card> shuffleDeck() {
+        Collections.shuffle(deckOfCards);
+        return deckOfCards;
+    }
 }
