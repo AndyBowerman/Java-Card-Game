@@ -5,11 +5,7 @@ import java.util.Collections;
 
 public class CardGame {
     protected ArrayList<Card> deckOfCards = new ArrayList<>();
-
-    protected String name;
-
-    public CardGame(String name) {
-        this.name = name;
+    public CardGame() {
         this.deckOfCards.add(new Card("U+2660", "2", 2));
         this.deckOfCards.add(new Card("U+2660", "3", 3));
         this.deckOfCards.add(new Card("U+2660", "4", 4));
@@ -70,12 +66,10 @@ public class CardGame {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Card dealCard() {
-        return deckOfCards.get(deckOfCards.size() - 1);
+        Card cardDealt = deckOfCards.get(deckOfCards.size() - 1);
+        deckOfCards.remove(deckOfCards.size() - 1);
+        return cardDealt;
     }
 
     public ArrayList<Card> sortDeckInNumberOrder() {
