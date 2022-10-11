@@ -2,9 +2,11 @@ import Card.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class CardGame {
     protected ArrayList<Card> deckOfCards = new ArrayList<>();
+    protected List<Card> removedCards = new ArrayList<Card>();
     public CardGame() {
         this.deckOfCards.add(new Card("U+2660", "2", 2));
         this.deckOfCards.add(new Card("U+2660", "3", 3));
@@ -69,6 +71,7 @@ public class CardGame {
     public Card dealCard() {
         Card cardDealt = deckOfCards.get(deckOfCards.size() - 1);
         deckOfCards.remove(deckOfCards.size() - 1);
+        removedCards.add(cardDealt);
         return cardDealt;
     }
 
